@@ -17,15 +17,19 @@ public class GoldController {
     @Autowired
     private GoldPriceService service;
 
+    // api for getting metal details
     @GetMapping("/metal")
     public Map<String, MetalPrice> getGoldPrices() {
 
         Map<String, MetalPrice> map = new HashMap<>();
-
+        // gold data
         map.put("gold24", service.getGoldPrice());
         System.out.printf(service.getGoldPrice().toString());
+        // silver data
         map.put("silver", service.getSilverPrice());
+        // copper data
         map.put("copper", service.getCopperPrice());
+        //lead data
         map.put("lead", service.getLeadPrice());
 
         return map;

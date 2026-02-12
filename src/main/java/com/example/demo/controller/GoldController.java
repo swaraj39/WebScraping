@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.Map;
 
-@CrossOrigin(origins = "https://web-scraping-front.vercel.app/")
+@CrossOrigin(origins = "https://web-scraping-front.vercel.app")
 @RestController
 public class GoldController {
 

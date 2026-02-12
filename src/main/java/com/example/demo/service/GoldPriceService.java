@@ -8,9 +8,11 @@ import com.example.demo.Model.MetalPrice;
 @Service
 public class GoldPriceService {
 
+    // url to hit
     private static final String URL =
             "https://commoditiescontrol.com/eagritrader/revamp/long_short_details.php";
 
+    // method to fetch the data
     private MetalPrice getMetalData(String metalName) {
         try {
             Document doc = Jsoup.connect(URL)
@@ -22,7 +24,7 @@ public class GoldPriceService {
                     "tr:has(p.m-0.element:matchesOwn(^" + metalName + "$))");
 
             if (row == null) return new MetalPrice(metalName, "N/A", "N/A", "Not found");
-
+            // data of expiry, current rate and revious rate
             String expiry = row.selectFirst("p.m-0.expiration").text();
             String current = row.selectFirst("span.startDate").text();
             String previous = row.selectFirst("span.endDate").text();
@@ -33,12 +35,16 @@ public class GoldPriceService {
             return new MetalPrice(metalName, "Error", "Error", "Error");
         }
     }
-
+    // gold method
     public MetalPrice getGoldPrice() { return getMetalData("Gold"); }
+    // silver method
     public MetalPrice getSilverPrice() { return getMetalData("Silver"); }
+    // copper method
     public MetalPrice getCopperPrice() { return getMetalData("Copper"); }
+    // lead method
     public MetalPrice getLeadPrice() { return getMetalData("Lead"); }
-    public MetalPrice getAluminiumPrice() { return getMetalData("Aluminium"); }
+    // gold method
+    // public MetalPrice getAluminiumPrice() { return getMetalData("Aluminium"); }
 
 
 
